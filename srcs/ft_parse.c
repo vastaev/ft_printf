@@ -5,8 +5,6 @@ void	ft_parse(va_list args, char type)
 	int arg;
 
 	ft_conversions(type, args);
-//	arg = va_arg(args, int);
-//	write(1, &arg, 1);
 }
 
 void	ft_conversions(char type, va_list args)
@@ -21,4 +19,10 @@ void	ft_conversions(char type, va_list args)
 		ifstring(args);
 	else if (type == 'u')
 		ifuint(args);
+	else if (type == 'x')
+		ifx16(args);
+	else if (type == 'X')
+		ifbigx16(args);
+	else if (type == 'p')
+		ifpointer(args);
 }

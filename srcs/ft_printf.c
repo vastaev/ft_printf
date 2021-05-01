@@ -1,21 +1,20 @@
 #include "printf.h"
+#include <>
 
 int ft_printf(const char *format, ...)
 {
-	t_printf	govno;
+	t_printf	all;
 	va_list		args;
 
-	govno.format = (char *)format;
+	all.fmt = (char *)format;
 	va_start(args, format);
-	while (*format)
+	while (all.fmt[all.i])
 	{
-		if (*format != '%')
-			write(1, format, 1);
-		else if (*format++ == '%')
-		{
+
+		if (all.fmt[all.i] == '%')
 			ft_parse(args, *format);
-		}
-		format++;
+		else
+			all.i++;
 	}
 	va_end(args);
 	return (0);
@@ -23,6 +22,10 @@ int ft_printf(const char *format, ...)
 
 int main(void)
 {
-	ft_printf("%%asd%u", 10000000);
+	int a;
+	void *p;
+
+	p = &a;
+	ft_printf("%%asd %5d", 22);
 	return (0);
 }

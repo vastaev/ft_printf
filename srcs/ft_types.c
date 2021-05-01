@@ -33,3 +33,12 @@ void	ifuint(va_list args)
 	ft_putstr_fd(s, 1);
 	free(s);
 }
+
+void	ifx16(va_list args)
+{
+	char *s;
+
+	s = ft_itoa_base(va_arg(args, unsigned int), 16);
+	ft_putstr_fd(s, 1);
+	free(s);
+}

@@ -7,9 +7,11 @@
 
 typedef struct	s_printf
 {
-	char	*format;
+	char	*fmt;
+	int		i;
 
-	int 	type;
+	int		type;
+	int		width;
 }				t_printf;
 
 int		ft_printf(const char *format, ...);
@@ -21,5 +23,8 @@ void	ifchar(va_list args);
 void	ifintord(va_list args);
 void	ifstring(va_list args);
 void	ifuint(va_list args);
+void	ifx16(va_list args);
+void	ifbigx16(va_list args);
+void	ifpointer(va_list args);
 
 #endif //PRINTF_PRINTF_H
