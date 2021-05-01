@@ -1,24 +1,28 @@
-#include "includes/printf.h"
+#include "printf.h"
 
 int ft_printf(const char *format, ...)
 {
-	int length;
+	t_printf	govno;
+	va_list		args;
 
-	length = 0;
-	va_list ap;
-	va_start(ap, format);
+	govno.format = (char *)format;
+	va_start(args, format);
 	while (*format)
 	{
-		write(1, format, 1);
-		if (*format++ == '%')
-			return (0);
+		if (*format != '%')
+			write(1, format, 1);
+		else if (*format++ == '%')
+		{
+			ft_parse(args, *format);
+		}
+		format++;
 	}
-	va_end(ap);
+	va_end(args);
 	return (0);
 }
 
 int main(void)
 {
-	ft_printf("pr%iv");
+	ft_printf("%%asd%u", 10000000);
 	return (0);
 }
