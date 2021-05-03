@@ -1,28 +1,76 @@
 #include "../includes/printf.h"
 
-void	ft_parse(va_list args, char type)
+static void flags_parse(const char *format,  t_prmim *all)
 {
-	int arg;
+	int	i;
 
-	ft_conversions(type, args);
+	i = 0;
+	while (1)
+	{
+		if (format[i] == '-')
+			all->minus = 1;
+		else if (format[i] == ' ')
+			all->space = 1;
+		else if (format[i] == '+')
+			all->plus = 1;
+		else if (format[i] == '0')
+			all->zero = 1;
+		else if (format[i] == '#')
+			all->hash = 1;
+		else
+			break ;
+		i++;
+	}
+	all->to_skip = i;
 }
 
-void	ft_conversions(char type, va_list args)
+static void width_parse(const char *format,  t_prmim *all, va_list args)
 {
-	if (type == '%')
-		write(1, "%", 1);
-	else if (type == 'c')
-		ifchar(args);
-	else if (type == 'd' || type == 'i')
-		ifintord(args);
-	else if (type == 's')
-		ifstring(args);
-	else if (type == 'u')
-		ifuint(args);
-	else if (type == 'x')
-		ifx16(args);
-	else if (type == 'X')
-		ifbigx16(args);
-	else if (type == 'p')
-		ifpointer(args);
+	if (format[all->to_skip] == '*')
+	{
+		all->width = va_arg(args, int);
+		if (all->width < 0)
+		{
+			all->minus = 1;
+			all->width *= -1;
+		}
+		all->to_skip++;
+		return ;
+	}
+	all->width = ft_atoi(format + all->to_skip);
+	while (ft_isdigit(format[all->to_skip]))
+		all->to_skip++;
+}
+
+static void precision_parse(const char *format, t_prmim *all, va_list args)
+{
+	if (format[all->to_skip] == '.')
+		all->to_skip++;
+	else
+		return ;
+	if (format[all->to_skip] == '*')
+	{
+		all->precision = va_arg(args, int);
+		all->to_skip++;
+		return ;
+	}
+	all->precision = ft_atoi(format + all->to_skip);
+	while (ft_isdigit(format[all->to_skip]))
+		all->to_skip++;
+}
+
+static void	type_parse(const char *format, t_prmim *all)
+{
+	all->type = format[all->to_skip];
+	all->to_skip++;
+}
+
+t_prmim	ft_parse(const char *format, t_prmim all, va_list args)
+{
+
+	flags_parse(format, &all);
+	width_parse(format, &all, args);
+	precision_parse(format, &all, args);
+	type_parse(format, &all);
+	return (all);
 }

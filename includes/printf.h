@@ -5,26 +5,27 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef struct	s_printf
+typedef struct	s_prmim
 {
-	char	*fmt;
-	int		i;
+	int		width;
+	int		precision;
 
 	int		type;
-	int		width;
-}				t_printf;
+	int 	minus;
+	int 	plus;
+	int		hash;
+	int		space;
+	int		zero;
 
-int		ft_printf(const char *format, ...);
-void	ft_parse(va_list args, char type);
-void	ft_conversions(char type, va_list args);
+	int		to_skip;
+}				t_prmim;
 
-// types
-void	ifchar(va_list args);
-void	ifintord(va_list args);
-void	ifstring(va_list args);
-void	ifuint(va_list args);
-void	ifx16(va_list args);
-void	ifbigx16(va_list args);
-void	ifpointer(va_list args);
+int			ft_printf(const char *format, ...);
+t_prmim 	ft_parse(const char *format, t_prmim all, va_list args);
+
+int			ft_putchar_count(char c, char flag);
+
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
 
 #endif //PRINTF_PRINTF_H

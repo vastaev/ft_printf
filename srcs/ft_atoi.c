@@ -1,5 +1,12 @@
-//part1
-#include "libft.h"
+#include "../includes/printf.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
 static int	ft_isspace(int c)
 {

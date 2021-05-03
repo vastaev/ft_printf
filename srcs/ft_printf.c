@@ -1,31 +1,40 @@
-#include "printf.h"
-#include <>
+#include "../includes/printf.h"
 
-int ft_printf(const char *format, ...)
+static t_prmim init_struct(t_prmim all)
 {
-	t_printf	all;
-	va_list		args;
+	all.type = 0;
+	all.width = 0;
+	all.minus = 0;
+	all.plus = 0;
+	all.zero = 0;
+	all.precision = -1;
+	return (all);
+}
 
-	all.fmt = (char *)format;
+int	ft_printf(const char *format, ...)
+{
+	t_prmim all;
+	va_list args;
+
+	all = init_struct(all);
 	va_start(args, format);
-	while (all.fmt[all.i])
+	while (*format)
 	{
-
-		if (all.fmt[all.i] == '%')
-			ft_parse(args, *format);
-		else
-			all.i++;
+		if (*format != '%')
+			write(1, format, 1);
+		else if (*format == '%')
+		{
+			format++;
+			ft_parse(format, all, args);
+		}
+		format++;
 	}
 	va_end(args);
 	return (0);
 }
 
-int main(void)
+int main()
 {
-	int a;
-	void *p;
-
-	p = &a;
-	ft_printf("%%asd %5d", 22);
-	return (0);
+	ft_printf("Hello, %# World!\n");
+	return 0;
 }
