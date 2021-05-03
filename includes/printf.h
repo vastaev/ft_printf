@@ -23,7 +23,9 @@ typedef struct	s_prmim
 int			ft_printf(const char *format, ...);
 t_prmim 	ft_parse(const char *format, t_prmim all, va_list args);
 
+void		ft_print_num(t_prmim all, va_list args);
 int			ft_putchar_count(char c, char flag);
+void		print_int_decimal(t_prmim all, va_list args);
 
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);

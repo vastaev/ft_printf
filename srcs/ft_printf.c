@@ -26,6 +26,7 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			ft_parse(format, all, args);
+			ft_print_num()
 		}
 		format++;
 	}

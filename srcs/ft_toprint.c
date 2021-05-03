@@ -1,9 +1,14 @@
 #include "../includes/printf.h"
 
-void ft_print_num(t_prmim all, va_list args)
+void	putnb_base(long nb, int base)
+{
+
+}
+
+void	ft_print_num(t_prmim all, va_list args)
 {
 	if (all.type == 'i' || all.type == 'd')
-		print_intOrD(all, args);
+		print_int_decimal(all, args);
 }
 
 int	ft_putchar_count(char c, char flag)
