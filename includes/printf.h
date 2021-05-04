@@ -25,7 +25,14 @@ t_prmim 	ft_parse(const char *format, t_prmim all, va_list args);
 
 void		ft_print_num(t_prmim all, va_list args);
 int			ft_putchar_count(char c, char flag);
-void		print_int_decimal(t_prmim all, va_list args);
+void		putnb_base(int n, int base);
+
+void		print_unsigned_int_decimal(t_prmim all, unsigned int n);
+void		print_signed_int_decimal(t_prmim all, int n);
+
+void		print_spaces(int n);
+void		print_zeroes(int n);
+void 		print_spaces_or_zeroes(int n, int flag);
 
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);

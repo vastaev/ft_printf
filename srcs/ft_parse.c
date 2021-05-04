@@ -1,6 +1,6 @@
 #include "../includes/printf.h"
 
-static void flags_parse(const char *format,  t_prmim *all)
+static void	flags_parse(const char *format,  t_prmim *all)
 {
 	int	i;
 
@@ -61,13 +61,12 @@ static void precision_parse(const char *format, t_prmim *all, va_list args)
 
 static void	type_parse(const char *format, t_prmim *all)
 {
-	all->type = format[all->to_skip];
+	all->type = (unsigned char)format[all->to_skip];
 	all->to_skip++;
 }
 
 t_prmim	ft_parse(const char *format, t_prmim all, va_list args)
 {
-
 	flags_parse(format, &all);
 	width_parse(format, &all, args);
 	precision_parse(format, &all, args);
