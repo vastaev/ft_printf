@@ -1,6 +1,6 @@
 #include "../includes/printf.h"
 
-void 	print_spaces_or_zeroes(int n, int flag)
+void	print_spaces_or_zeroes(int n, int flag)
 {
 	while (n-- && n > 0)
 	{
@@ -25,4 +25,14 @@ void	print_zeroes(int n)
 	{
 		ft_putchar_count('0', 1);
 	}
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

@@ -30,12 +30,17 @@ void		putnb_base(int n, int base);
 void		print_unsigned_int_decimal(t_prmim all, unsigned int n);
 void		print_signed_int_decimal(t_prmim all, int n);
 void		print_char(t_prmim all, int c);
+void		print_percent(t_prmim all);
+void		print_string(t_prmim all, char *str);
 
 void		print_spaces(int n);
 void		print_zeroes(int n);
 void 		print_spaces_or_zeroes(int n, int flag);
+int			ft_strlen(char *str);
+void		ft_putstrn(char *str, int n);
 
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
+
 
 #endif //PRINTF_PRINTF_H

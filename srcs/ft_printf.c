@@ -1,5 +1,8 @@
 #include "../includes/printf.h"
 
+
+#include <stdio.h>
+
 static t_prmim init_struct(t_prmim all)
 {
 	all.type = 0;
@@ -23,12 +26,12 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
-			write(1, format, 1);
+			ft_putchar_count(*format, 1);
 		else if (*format++ == '%')
 		{
 			all = ft_parse(format, all, args);
 			ft_print_num(all, args);
-			format = format + all.to_skip;
+			format = format + all.to_skip - 1;
 		}
 		format++;
 	}
@@ -37,9 +40,9 @@ int	ft_printf(const char *format, ...)
 }
 
 
-#include <stdio.h>
+
 int main()
 {
-	printf("\n%d\n", ft_printf("%5.3d", 42));
-	return 0;
+	ft_printf("%0-14sasd\n", "HEllow olrd!");
+	printf("%0-14sasd", "HEllow olrd!");
 }

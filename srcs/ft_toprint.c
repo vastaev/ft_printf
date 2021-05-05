@@ -8,6 +8,10 @@ void	ft_print_num(t_prmim all, va_list args)
 		print_signed_int_decimal(all, va_arg(args, int));
 	if (all.type == 'c')
 		print_char(all, va_arg(args, int));
+	if (all.type == '%')
+		print_percent(all);
+	if (all.type == 's')
+		print_string(all, va_arg(args, char *));
 }
 
 void	putnb_base(int n, int base)
