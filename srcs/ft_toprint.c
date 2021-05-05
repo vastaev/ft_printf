@@ -6,6 +6,8 @@ void	ft_print_num(t_prmim all, va_list args)
 		print_unsigned_int_decimal(all, va_arg(args,unsigned int));
 	if (all.type == 'i' || all.type == 'd')
 		print_signed_int_decimal(all, va_arg(args, int));
+	if (all.type == 'c')
+		print_char(all, va_arg(args, int));
 }
 
 void	putnb_base(int n, int base)

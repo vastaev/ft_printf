@@ -29,6 +29,7 @@ void		putnb_base(int n, int base);
 
 void		print_unsigned_int_decimal(t_prmim all, unsigned int n);
 void		print_signed_int_decimal(t_prmim all, int n);
+void		print_char(t_prmim all, int c);
 
 void		print_spaces(int n);
 void		print_zeroes(int n);
