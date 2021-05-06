@@ -20,13 +20,15 @@ SRCS	=	srcs/ft_printf.c\
 				srcs/ft_toprint.c\
 				srcs/print_char_strings.c\
 				srcs/print_integer_decimal.c\
-				srcs/ft_utils.c
+				srcs/ft_utils.c\
+				srcs/print_pointer.c\
+				srcs/print_hex.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 CC 		=	gcc
 
-СFLAGS	=	-Wall -Wextra -Werror -O2
+СFLAGS	=	-Wall -Wextra -Werror
 
 INCDIR	=	./includes/
 

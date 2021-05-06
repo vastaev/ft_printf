@@ -1,6 +1,6 @@
 #include "../includes/printf.h"
 
-int	digits_count(int n)
+static int	digits_count(int n)
 {
 	int	counter;
 

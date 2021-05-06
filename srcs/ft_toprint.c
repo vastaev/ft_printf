@@ -4,16 +4,21 @@ void	ft_print_num(t_prmim all, va_list args)
 {
 	if (all.type == 'u')
 		print_unsigned_int_decimal(all, va_arg(args,unsigned int));
-	if (all.type == 'i' || all.type == 'd')
+	else if (all.type == 'i' || all.type == 'd')
 		print_signed_int_decimal(all, va_arg(args, int));
-	if (all.type == 'c')
+	else if (all.type == 'c')
 		print_char(all, va_arg(args, int));
-	if (all.type == '%')
+	else if (all.type == '%')
 		print_percent(all);
-	if (all.type == 's')
+	else if (all.type == 's')
 		print_string(all, va_arg(args, char *));
-	if (all.type == 'x')
+	else if (all.type == 'x')
 		print_hex_num(all, va_arg(args, unsigned int));
+	else if (all.type == 'X')
+		print_upper_hex_num(all, va_arg(args, unsigned int));
+	else if (all.type == 'p')
+		print_pointer(all, va_arg(args, unsigned long));
+
 }
 
 void	putnb_base(int n, int base)
@@ -36,23 +41,6 @@ void	putnb_base(int n, int base)
 	}
 	else
 		ft_putchar_count(nb + '0', 1);
-}
-
-void	putnb_16base(unsigned long n)
-{
-	long long	nb;
-
-	nb = (long long) n;
-	if (nb >= 10)
-	{
-		putnb_16base(nb / 16);
-		if (nb % 16 > 9)
-			ft_putchar_count(nb % 16 + 87, 1);
-		else
-			ft_putchar_count(nb % 16 + '0', 1);
-	}
-	else
-		ft_putchar_count(nb, 1);
 }
 
 int	ft_putchar_count(char c, char flag)

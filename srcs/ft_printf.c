@@ -5,7 +5,6 @@
 
 static t_prmim init_struct(t_prmim all)
 {
-	all.type = 0;
 	all.width = 0;
 	all.minus = 0;
 	all.plus = 0;
@@ -21,6 +20,7 @@ int	ft_printf(const char *format, ...)
 	t_prmim all;
 	va_list args;
 
+	all.type = 0;
 	all = init_struct(all);
 	va_start(args, format);
 	while (*format)
@@ -30,6 +30,8 @@ int	ft_printf(const char *format, ...)
 		else if (*format++ == '%')
 		{
 			all = ft_parse(format, all, args);
+			if (all.type == 0)
+				return (-1);
 			ft_print_num(all, args);
 			format = format + all.to_skip - 1;
 		}
@@ -43,6 +45,5 @@ int	ft_printf(const char *format, ...)
 
 int main()
 {
-	ft_printf("%x\n", -123);
-	printf("%x", -123);
+	ft_printf("%-09s", "hi low");
 }

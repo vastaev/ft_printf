@@ -55,8 +55,8 @@ static void precision_parse(const char *format, t_prmim *all, va_list args)
 		return ;
 	}
 	all->precision = ft_atoi(format + all->to_skip);
-	if (format[all->to_skip] == '-' || format[all->to_skip] == '+')
-		all->to_skip++;
+//	if (format[all->to_skip] == '-' || format[all->to_skip] == '+')
+//		all->to_skip++;
 	while (ft_isdigit(format[all->to_skip]))
 		all->to_skip++;
 }
@@ -64,6 +64,8 @@ static void precision_parse(const char *format, t_prmim *all, va_list args)
 static void	type_parse(const char *format, t_prmim *all)
 {
 	all->type = (unsigned char)format[all->to_skip];
+	if (all->type == 0)
+		return ;
 	all->to_skip++;
 }
 
