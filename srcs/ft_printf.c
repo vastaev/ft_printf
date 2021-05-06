@@ -43,6 +43,6 @@ int	ft_printf(const char *format, ...)
 
 int main()
 {
-	ft_printf("%0-14sasd\n", "HEllow olrd!");
-	printf("%0-14sasd", "HEllow olrd!");
+	ft_printf("%x\n", -123);
+	printf("%x", -123);
 }

@@ -12,11 +12,13 @@ void	ft_print_num(t_prmim all, va_list args)
 		print_percent(all);
 	if (all.type == 's')
 		print_string(all, va_arg(args, char *));
+	if (all.type == 'x')
+		print_hex_num(all, va_arg(args, unsigned int));
 }
 
 void	putnb_base(int n, int base)
 {
-	long long nb;
+	long long		nb;
 
 	nb = (long long) n;
 	if (nb < 0)
@@ -34,6 +36,23 @@ void	putnb_base(int n, int base)
 	}
 	else
 		ft_putchar_count(nb + '0', 1);
+}
+
+void	putnb_16base(unsigned long n)
+{
+	long long	nb;
+
+	nb = (long long) n;
+	if (nb >= 10)
+	{
+		putnb_16base(nb / 16);
+		if (nb % 16 > 9)
+			ft_putchar_count(nb % 16 + 87, 1);
+		else
+			ft_putchar_count(nb % 16 + '0', 1);
+	}
+	else
+		ft_putchar_count(nb, 1);
 }
 
 int	ft_putchar_count(char c, char flag)
