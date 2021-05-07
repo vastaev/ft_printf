@@ -5,7 +5,7 @@ void	putnb_16base(unsigned long n)
 	long long	nb;
 
 	nb = (long long) n;
-	if (nb >= 10)
+	if (nb >= 16)
 	{
 		putnb_16base(nb / 16);
 		if (nb % 16 > 9)
@@ -14,7 +14,12 @@ void	putnb_16base(unsigned long n)
 			ft_putchar_count(nb % 16 + '0', 1);
 	}
 	else
-		ft_putchar_count(nb + '0', 1);
+	{
+		if (nb > 9)
+			ft_putchar_count(nb + 87, 1);
+		else
+			ft_putchar_count(nb + '0', 1);
+	}
 }
 
 static void	putnb_16base_upper(unsigned long n)
@@ -22,7 +27,7 @@ static void	putnb_16base_upper(unsigned long n)
 	long long	nb;
 
 	nb = (long long) n;
-	if (nb >= 10)
+	if (nb >= 16)
 	{
 		putnb_16base_upper(nb / 16);
 		if (nb % 16 > 9)
@@ -31,7 +36,12 @@ static void	putnb_16base_upper(unsigned long n)
 			ft_putchar_count(nb % 16 + '0', 1);
 	}
 	else
-		ft_putchar_count(nb + '0', 1);
+	{
+		if (nb > 9)
+			ft_putchar_count(nb + 'A' - 10, 1);
+		else
+			ft_putchar_count(nb + '0', 1);
+	}
 }
 
 int	digits16_count(unsigned long n)

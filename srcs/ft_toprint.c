@@ -21,28 +21,6 @@ void	ft_print_num(t_prmim all, va_list args)
 
 }
 
-void	putnb_base(int n, int base)
-{
-	long long		nb;
-
-	nb = (long long) n;
-	if (nb < 0)
-	{
-		ft_putchar_count('-', 1);
-		putnb_base(-nb, base);
-	}
-	else if (nb >= 10)
-	{
-		putnb_base(nb / base, base);
-		if (nb % base > 9)
-			ft_putchar_count(nb % base + 87, 1);
-		else
-			ft_putchar_count(nb % base + '0', 1);
-	}
-	else
-		ft_putchar_count(nb + '0', 1);
-}
-
 int	ft_putchar_count(char c, char flag)
 {
 	static int	counter;

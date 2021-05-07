@@ -1,5 +1,27 @@
 #include "../includes/printf.h"
 
+void	putnb_base(long long n, int base)
+{
+	long long		nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		//ft_putchar_count('-', 1);
+		putnb_base(-nb, base);
+	}
+	else if (nb >= 10)
+	{
+		putnb_base(nb / base, base);
+		if (nb % base > 9)
+			ft_putchar_count(nb % base + 87, 1);
+		else
+			ft_putchar_count(nb % base + '0', 1);
+	}
+	else
+		ft_putchar_count(nb + '0', 1);
+}
+
 static int	digits_count(int n)
 {
 	int	counter;
@@ -50,12 +72,12 @@ void	print_signed_int_decimal(t_prmim all, int n)
 {
 	int digits;
 
-	digits = digits_count(n);
 	if (n >= 0)
 		print_unsigned_int_decimal(all, n);
 	else
 	{
 		n = -n;
+		digits = digits_count(n);
 		if (n == 0 && all.precision == 0)
 			return (prekol_s_nulem(all));
 		if (all.precision != -1)

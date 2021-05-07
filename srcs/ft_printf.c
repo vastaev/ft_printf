@@ -42,8 +42,8 @@ int	ft_printf(const char *format, ...)
 }
 
 
-
 int main()
 {
-	ft_printf("%-09s", "hi low");
+	printf("%0*.*i\n" , 2 , -2, 8);
+	//ft_printf("%0*.*i" , 2 , -2, 8);
 }
