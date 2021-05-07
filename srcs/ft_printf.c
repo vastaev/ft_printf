@@ -1,10 +1,8 @@
 #include "../includes/printf.h"
 
-
-#include <stdio.h>
-
-static t_prmim init_struct(t_prmim all)
+static t_prmim	init_struct(t_prmim all)
 {
+	all.type = 0;
 	all.width = 0;
 	all.minus = 0;
 	all.plus = 0;
@@ -17,11 +15,9 @@ static t_prmim init_struct(t_prmim all)
 
 int	ft_printf(const char *format, ...)
 {
-	t_prmim all;
-	va_list args;
+	t_prmim	all;
+	va_list	args;
 
-	all.type = 0;
-	all = init_struct(all);
 	va_start(args, format);
 	while (*format)
 	{
@@ -29,6 +25,7 @@ int	ft_printf(const char *format, ...)
 			ft_putchar_count(*format, 1);
 		else if (*format++ == '%')
 		{
+			all = init_struct(all);
 			all = ft_parse(format, all, args);
 			if (all.type == 0)
 				return (-1);
@@ -39,11 +36,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (ft_putchar_count('.', 0));
-}
-
-
-int main()
-{
-	printf("%0*.*i\n" , 2 , -2, 8);
-	//ft_printf("%0*.*i" , 2 , -2, 8);
 }

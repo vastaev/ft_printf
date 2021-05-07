@@ -2,21 +2,26 @@
 
 void	print_pointer(t_prmim all, unsigned long n)
 {
-	int digits;
+	int	digits;
 
+	if (!n && all.precision == 0)
+	{
+		if (all.minus == 0)
+			print_spaces(all.width - 1);
+		ft_putstrn("0x", 2);
+		if (all.minus)
+			print_spaces(all.width - 1);
+		return ;
+	}
 	digits = digits16_count(n);
 	if (all.precision == -1 && digits > all.precision)
 		all.precision = digits;
-	if (!all.minus && all.precision > 1)
-		print_spaces_or_zeroes(all.width - all.precision - 1, all.zero);
-	else if (!all.minus && all.precision < 1)
-		print_spaces_or_zeroes(all.width - all.precision - 3, all.zero);
-	print_zeroes(all.precision - digits - 3);
+	if (!all.minus && all.precision < 1)
+		print_spaces_or_zeroes(all.width - 3, all.zero);
+	if (all.minus == 0 && all.width > digits)
+		print_spaces(all.width - digits - 1);
 	ft_putstrn("0x", 2);
-	if (n)
-		putnb_16base(n);
-	else if (!n && all.precision)
-		ft_putstrn("0", 1);
+	putnb_16base(n);
 	if (all.minus)
-		print_spaces(all.width - all.precision - 1);
+		print_spaces(all.width - digits - 1);
 }

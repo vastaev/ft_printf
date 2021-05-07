@@ -49,8 +49,11 @@ int	digits16_count(unsigned long n)
 	int	counter;
 
 	counter = 1;
-	while (n /= 16)
+	while (n / 16)
+	{
+		n = n / 16;
 		counter++;
+	}
 	return (counter);
 }
 

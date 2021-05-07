@@ -6,10 +6,7 @@ void	putnb_base(long long n, int base)
 
 	nb = n;
 	if (nb < 0)
-	{
-		//ft_putchar_count('-', 1);
 		putnb_base(-nb, base);
-	}
 	else if (nb >= 10)
 	{
 		putnb_base(nb / base, base);
@@ -22,7 +19,7 @@ void	putnb_base(long long n, int base)
 		ft_putchar_count(nb + '0', 1);
 }
 
-static int	digits_count(int n)
+static int	digits_count(long long n)
 {
 	int	counter;
 
@@ -32,8 +29,11 @@ static int	digits_count(int n)
 		n = -n;
 		counter++;
 	}
-	while (n /= 10)
+	while (n / 10)
+	{
+		n = n / 10;
 		counter++;
+	}
 	return (counter);
 }
 
@@ -70,7 +70,7 @@ void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
 
 void	print_signed_int_decimal(t_prmim all, int n)
 {
-	int digits;
+	int	digits;
 
 	if (n >= 0)
 		print_unsigned_int_decimal(all, n);

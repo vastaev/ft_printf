@@ -3,7 +3,7 @@
 void	ft_print_num(t_prmim all, va_list args)
 {
 	if (all.type == 'u')
-		print_unsigned_int_decimal(all, va_arg(args,unsigned int));
+		print_unsigned_int_decimal(all, va_arg(args, unsigned int));
 	else if (all.type == 'i' || all.type == 'd')
 		print_signed_int_decimal(all, va_arg(args, int));
 	else if (all.type == 'c')
@@ -18,7 +18,6 @@ void	ft_print_num(t_prmim all, va_list args)
 		print_upper_hex_num(all, va_arg(args, unsigned int));
 	else if (all.type == 'p')
 		print_pointer(all, va_arg(args, unsigned long));
-
 }
 
 int	ft_putchar_count(char c, char flag)

@@ -40,7 +40,7 @@ void	ft_putstrn(char *str, int n)
 
 void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -52,7 +52,7 @@ void	ft_putstr(char *str)
 
 void	print_string(t_prmim all, char *str)
 {
-	int strlen;
+	int	strlen;
 
 	if (!str)
 		return (print_string(all, "(null)"));
