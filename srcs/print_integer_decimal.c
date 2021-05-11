@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 void	putnb_base(long long n, int base)
 {
@@ -47,10 +47,12 @@ void	prekol_s_nulem(t_prmim all)
 
 void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
 {
-	int	digits;
+	int		digits;
+	long	nb;
 
-	digits = digits_count(n);
-	if (n == 0 && all.precision == 0)
+	nb = (long) n;
+	digits = digits_count(nb);
+	if (nb == 0 && all.precision == 0)
 		return (prekol_s_nulem(all));
 	if (all.precision != -1)
 		all.zero = 0;
@@ -63,35 +65,35 @@ void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
 	else if (all.space)
 		ft_putchar_count(' ', 1);
 	print_zeroes(all.precision - digits + 1);
-	putnb_base(n, 10);
+	putnb_base(nb, 10);
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
 
 void	print_signed_int_decimal(t_prmim all, int n)
 {
-	int	digits;
+	long	nb;
 
-	if (n >= 0)
-		print_unsigned_int_decimal(all, n);
+	nb = (long) n;
+	if (nb >= 0)
+		print_unsigned_int_decimal(all, nb);
 	else
 	{
-		n = -n;
-		digits = digits_count(n);
-		if (n == 0 && all.precision == 0)
+		nb = -nb;
+		if (nb == 0 && all.precision == 0)
 			return (prekol_s_nulem(all));
 		if (all.precision != -1)
 			all.zero = 0;
-		if (digits > all.precision)
-			all.precision = digits;
+		if (digits_count(nb) > all.precision)
+			all.precision = digits_count(nb);
 		if (all.zero)
 			ft_putchar_count('-', 1);
 		if (!all.minus)
 			print_spaces_or_zeroes(all.width - all.precision, all.zero);
 		if (!all.zero)
 			ft_putchar_count('-', 1);
-		print_zeroes(all.precision - digits + 1);
-		putnb_base(n, 10);
+		print_zeroes(all.precision - digits_count(nb) + 1);
+		putnb_base(nb, 10);
 		if (all.minus)
 			print_spaces(all.width - all.precision);
 	}

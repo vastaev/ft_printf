@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 static t_prmim	init_struct(t_prmim all)
 {

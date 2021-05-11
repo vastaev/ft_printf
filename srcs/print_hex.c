@@ -1,10 +1,10 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 void	putnb_16base(unsigned long n)
 {
-	long long	nb;
+	unsigned long long	nb;
 
-	nb = (long long) n;
+	nb = (unsigned long long) n;
 	if (nb >= 16)
 	{
 		putnb_16base(nb / 16);

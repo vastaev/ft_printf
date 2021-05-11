@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 static void	flags_parse(const char *format, t_prmim *all)
 {

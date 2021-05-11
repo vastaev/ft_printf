@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_print_num(t_prmim all, va_list args)
 {

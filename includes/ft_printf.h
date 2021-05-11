@@ -1,5 +1,5 @@
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -49,4 +49,4 @@ void		ft_putstr(char *str);
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 
-#endif //PRINTF_PRINTF_H
+#endif

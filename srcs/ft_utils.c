@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 void	print_spaces_or_zeroes(int n, int flag)
 {

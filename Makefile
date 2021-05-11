@@ -6,13 +6,13 @@
 #    By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 12:30:03 by cjoanne           #+#    #+#              #
-#    Updated: 2021/04/29 23:46:43 by cjoanne          ###   ########.fr        #
+#    Updated: 2021/05/11 19:04:57 by cjoanne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
-HEADER	=	printf.h
+HEADER	=	ft_printf.h
 
 SRCS	=	srcs/ft_printf.c\
 				srcs/ft_parse.c\
