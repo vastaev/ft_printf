@@ -18,6 +18,8 @@ void	ft_print_num(t_prmim all, va_list args)
 		print_upper_hex_num(all, va_arg(args, unsigned int));
 	else if (all.type == 'p')
 		print_pointer(all, va_arg(args, unsigned long));
+	else if (all.type == 'n')
+		*va_arg(args, int *) = ft_putchar_count('.', 0);
 }
 
 int	ft_putchar_count(char c, char flag)
@@ -34,7 +36,6 @@ int	ft_putchar_count(char c, char flag)
 	else
 	{
 		save = counter;
-		counter = 0;
 		return (save);
 	}
 }
