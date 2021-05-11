@@ -36,6 +36,7 @@ int	ft_putchar_count(char c, char flag)
 	else
 	{
 		save = counter;
+		counter = 0;
 		return (save);
 	}
 }
