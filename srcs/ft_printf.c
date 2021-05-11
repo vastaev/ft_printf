@@ -22,7 +22,7 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar_count(*format, 1);
+			all.written += ft_putchar_count(*format, 1);
 		else if (*format++ == '%')
 		{
 			all = init_struct(all);

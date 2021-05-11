@@ -19,7 +19,7 @@ void	ft_print_num(t_prmim all, va_list args)
 	else if (all.type == 'p')
 		print_pointer(all, va_arg(args, unsigned long));
 	else if (all.type == 'n')
-		*va_arg(args, int *) = ft_putchar_count('.', 0);
+		*va_arg(args, int *) = all.written;
 }
 
 int	ft_putchar_count(char c, char flag)

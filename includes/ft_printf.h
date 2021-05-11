@@ -18,6 +18,7 @@ typedef struct s_prmim
 	int		zero;
 
 	int		to_skip;
+	int		written;
 }				t_prmim;
 
 int			ft_printf(const char *format, ...);
