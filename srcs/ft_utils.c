@@ -36,3 +36,14 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+	unsigned char	chr;
+
+	chr = c;
+	while (*s != chr)
+		if (*s++ == '\0')
+			return (0);
+	return ((char *)s);
+}

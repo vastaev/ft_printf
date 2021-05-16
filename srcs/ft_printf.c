@@ -37,3 +37,10 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (ft_putchar_count('.', 0));
 }
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("%02-.026d", 5);
+}

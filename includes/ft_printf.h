@@ -1,14 +1,18 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# define CONVERSIONS "cspdiuxX%"
+
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_prmim
 {
 	int		width;
 	int		precision;
+	int		dot;
 
 	int		type;
 	int		minus;
@@ -49,5 +53,6 @@ void		ft_putstr(char *str);
 
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
+char		*ft_strchr(const char *s, int c);
 
 #endif

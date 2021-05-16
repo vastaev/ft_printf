@@ -38,6 +38,8 @@ LIBC    =   ar rcs
 
 all : $(NAME)
 
+bonus : all
+
 %.o : %.c
 	$(CC) $(СFLAGS) -I $(INCDIR) -c $< -o $@
 
