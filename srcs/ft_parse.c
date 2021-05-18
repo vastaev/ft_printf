@@ -21,75 +21,74 @@ static void	flags_parse(const char *format, t_prmim *all)
 			break ;
 		i++;
 	}
-	while (!ft_strchr(CONVERSIONS, *format))
+	while (!ft_strchr(CONVERSIONS, *format) && *format)
 	{
 		if (*format == '-')
 			all->minus = 1;
 		format++;
 	}
-	all->to_skip = i;
-}
-
-static void	width_parse(const char *format, t_prmim *all, va_list args)
-{
-	while (!ft_strchr(CONVERSIONS, *format))
-	{
-		if (ft_isdigit(*format))
-			if (*format == '*')
-			{
-				all->width = va_arg(args, int);
-				if (all->width < 0)
-				{
-					all->minus = 1;
-					all->width = -all->width;
-				}
-				return ;
-			}
-			else
-				all->precision = ft_atoi(format);
-		format++;
-	}
-	if (format[all->to_skip] == '*')
-	{
-		all->width = va_arg(args, int);
-		if (all->width < 0)
-		{
-			all->minus = 1;
-			all->width = -all->width;
-		}
-		all->to_skip++;
-		return ;
-	}
-	all->width = ft_atoi(format + all->to_skip);
-	while (ft_isdigit(format[all->to_skip]))
-		all->to_skip++;
 }
 
 static void	precision_parse(const char *format, t_prmim *all, va_list args)
 {
-	while (!ft_strchr(CONVERSIONS, *format))
+	while (!ft_strchr(CONVERSIONS, *format) && *format)
 	{
 		if (*format == '.')
-			format++;
-		if (*format == '*')
 		{
-			all->precision = va_arg(args, int);
-			if (all->precision < 0)
-				all->precision = -1;
-			return ;
-		}
-		else
+			all->dot = 1;
+			format++;
+			if (*format == '*')
+			{
+				all->precision = va_arg(args, int);
+				if (all->precision < 0)
+					all->precision = -1;
+				return;
+			}
 			all->precision = ft_atoi(format);
+			while (ft_isdigit(*format))
+				format++;
+		}
 		format++;
+	}
+}
+
+static void	width_parse(const char *format, t_prmim *all, va_list args)
+{
+	while (!ft_strchr(CONVERSIONS, *format) && *format)
+	{
+		if (*format == '.')
+			while (ft_isdigit(*(++format))) {}
+		else if (*format == '*')
+		{
+			all->width = va_arg(args, int);
+			if (all->width < 0)
+			{
+				all->minus = 1;
+				all->width = -all->width;
+			}
+			return;
+		}
+		if (ft_isdigit(*format) && *format != '0')
+		{
+			all->width = ft_atoi(format);
+			while (ft_isdigit(*format))
+				format++;
+		}
+		if (*format != '.' && !ft_strchr(CONVERSIONS, *format))
+			format++;
 	}
 }
 
 static void	type_parse(const char *format, t_prmim *all)
 {
-	all->type = (unsigned char)format[all->to_skip];
+	while (!ft_strchr(CONVERSIONS, *format) && *format)
+	{
+		format++;
+		all->to_skip++;
+	}
+	all->type = (unsigned char)*format;
 	if (all->type == 0)
 		return ;
-	all->to_skip++;
 }
 
 t_prmim	ft_parse(const char *format, t_prmim all, va_list args)

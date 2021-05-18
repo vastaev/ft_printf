@@ -106,3 +106,9 @@ void	print_upper_hex_num(t_prmim all, unsigned long n)
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
+
+
+//void	putnb_base(long long n, size_t baselen, char *base)
+//{
+//
+//}

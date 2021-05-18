@@ -2,6 +2,7 @@
 # define FT_PRINTF_H
 
 # define CONVERSIONS "cspdiuxX%"
+# define FLAGS "0-"
 
 # include <stdarg.h>
 # include <stdlib.h>
