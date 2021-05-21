@@ -23,7 +23,7 @@ void	print_pointer(t_prmim all, unsigned long n)
 	if (all.minus == 0 && all.width > digits)
 		print_spaces(all.width - digits - 1);
 	ft_putstrn("0x", 2);
-	putnb_16base(nb);
+	putnb_base(nb, 16, "0123456789abcdef");
 	if (all.minus)
 		print_spaces(all.width - digits - 1);
 }

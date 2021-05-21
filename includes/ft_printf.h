@@ -31,8 +31,7 @@ t_prmim		ft_parse(const char *format, t_prmim all, va_list args);
 void		ft_print_num(t_prmim all, va_list args);
 
 int			ft_putchar_count(char c, char flag);
-void		putnb_base(long long n, int base);
-void		putnb_16base(unsigned long n);
+int			putnb_base(long long n, size_t baselen, char *base);
 int			digits16_count(unsigned long n);
 void		prekol_s_nulem(t_prmim all);
 

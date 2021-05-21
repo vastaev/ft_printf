@@ -1,24 +1,5 @@
 #include "../includes/ft_printf.h"
 
-void	putnb_base(long long n, int base)
-{
-	long long		nb;
-
-	nb = n;
-	if (nb < 0)
-		putnb_base(-nb, base);
-	else if (nb >= 10)
-	{
-		putnb_base(nb / base, base);
-		if (nb % base > 9)
-			ft_putchar_count(nb % base + 87, 1);
-		else
-			ft_putchar_count(nb % base + '0', 1);
-	}
-	else
-		ft_putchar_count(nb + '0', 1);
-}
-
 static int	digits_count(long long n)
 {
 	int	counter;
@@ -65,7 +46,7 @@ void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
 	else if (all.space)
 		ft_putchar_count(' ', 1);
 	print_zeroes(all.precision - digits + 1);
-	putnb_base(nb, 10);
+	putnb_base(nb, 10, "0123456789");
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
@@ -93,7 +74,7 @@ void	print_signed_int_decimal(t_prmim all, int n)
 		if (!all.zero)
 			ft_putchar_count('-', 1);
 		print_zeroes(all.precision - digits_count(nb) + 1);
-		putnb_base(nb, 10);
+		putnb_base(nb, 10, "0123456789");
 		if (all.minus)
 			print_spaces(all.width - all.precision);
 	}
