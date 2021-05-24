@@ -13,7 +13,7 @@ int	digits16_count(unsigned long n)
 	return (counter);
 }
 
-void	print_hex_num(t_prmim all, unsigned long n)
+void	print_hex_num(t_prmim all, unsigned long long n, char *base)
 {
 	int	digits;
 
@@ -33,36 +33,10 @@ void	print_hex_num(t_prmim all, unsigned long n)
 	if (all.hash)
 		ft_putstrn("0x", 2);
 	print_zeroes(all.precision - digits + 1);
-	putnb_base((long long)n, 16, "0123456789abcdef");
+	putnb_base((long long)n, 16, base);
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
-
-void	print_upper_hex_num(t_prmim all, unsigned long n)
-{
-	int	digits;
-
-	digits = digits16_count(n);
-	if (n == 0 && all.precision == 0)
-		return (prekol_s_nulem(all));
-	if (all.precision != -1)
-		all.zero = 0;
-	if (digits > all.precision)
-		all.precision = digits;
-	if (!all.minus)
-		print_spaces_or_zeroes(all.width - all.precision + 1, all.zero);
-	if (all.plus)
-		ft_putchar_count('+', 1);
-	else if (all.space)
-		ft_putchar_count(' ', 1);
-	if (all.hash)
-		ft_putstrn("0X", 2);
-	print_zeroes(all.precision - digits + 1);
-	putnb_base((long long)n, 16, "0123456789ABCDEF");
-	if (all.minus)
-		print_spaces(all.width - all.precision + 1);
-}
-
 
 int	putnb_base(long long n, size_t baselen, char *base)
 {

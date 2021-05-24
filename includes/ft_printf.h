@@ -1,8 +1,9 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define CONVERSIONS "cspdiuxX%"
-# define FLAGS "0-"
+# define CONVERSIONS "cspdiuxX%n"
+# define BASE16LR "0123456789abcdef"
+# define BASE16UP "0123456789ABCDEF"
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -13,7 +14,6 @@ typedef struct s_prmim
 {
 	int		width;
 	int		precision;
-	int		dot;
 
 	int		type;
 	int		minus;
@@ -21,6 +21,10 @@ typedef struct s_prmim
 	int		hash;
 	int		space;
 	int		zero;
+	int		l;
+	int		L;
+	int		h;
+	int		H;
 
 	int		to_skip;
 	int		written;
@@ -35,14 +39,16 @@ int			putnb_base(long long n, size_t baselen, char *base);
 int			digits16_count(unsigned long n);
 void		prekol_s_nulem(t_prmim all);
 
-void		print_unsigned_int_decimal(t_prmim all, unsigned int n);
-void		print_signed_int_decimal(t_prmim all, int n);
+void		print_uns_i_d(t_prmim all, unsigned int n);
+void		print_sig_i_d(t_prmim all, int n);
 void		print_char(t_prmim all, int c);
 void		print_percent(t_prmim all);
 void		print_string(t_prmim all, char *str);
-void		print_hex_num(t_prmim all, unsigned long n);
-void		print_upper_hex_num(t_prmim all, unsigned long n);
+void		print_hex_num(t_prmim all, unsigned long long n, char *base);
 void		print_pointer(t_prmim all, unsigned long n);
+void		casted_print(t_prmim all, va_list args);
+
+//void		print_n(int *args);
 
 void		print_spaces(int n);
 void		print_zeroes(int n);

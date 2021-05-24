@@ -35,7 +35,6 @@ static void	precision_parse(const char *format, t_prmim *all, va_list args)
 	{
 		if (*format == '.')
 		{
-			all->dot = 1;
 			format++;
 			if (*format == '*')
 			{
@@ -87,8 +86,24 @@ static void	type_parse(const char *format, t_prmim *all)
 		all->to_skip++;
 	}
 	all->type = (unsigned char)*format;
-	if (all->type == 0)
-		return ;
+	if (*--format == 'l')
+	{
+		all->l =  1;
+		if (*--format == 'l')
+		{
+			all->l = 0;
+			all->L = 1;
+		}
+	}
+	else if (*format == 'h')
+	{
+		all->h = 1;
+		if (*--format == 'h')
+		{
+			all->h = 0;
+			all->H = 1;
+		}
+	}
 }
 
 t_prmim	ft_parse(const char *format, t_prmim all, va_list args)
