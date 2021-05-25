@@ -36,11 +36,11 @@ void		ft_print_num(t_prmim all, va_list args);
 
 int			ft_putchar_count(char c, char flag);
 int			putnb_base(long long n, size_t baselen, char *base);
-int			digits16_count(unsigned long n);
+int			digits16_count(unsigned long long n);
 void		prekol_s_nulem(t_prmim all);
 
-void		print_uns_i_d(t_prmim all, unsigned int n);
-void		print_sig_i_d(t_prmim all, int n);
+void		print_uns_i_d(t_prmim all, unsigned long long n);
+void		print_sig_i_d(t_prmim all, long long int n);
 void		print_char(t_prmim all, int c);
 void		print_percent(t_prmim all);
 void		print_string(t_prmim all, char *str);

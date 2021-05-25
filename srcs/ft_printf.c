@@ -118,8 +118,6 @@ int	ft_printf(const char *format, ...)
 ////	printf("%d\n", num.s_bitfield.sign);
 ////	printf("%d\n", num.s_bitfield.exponent);
 ////	printf("%s\n", ft_itoa_base(num.s_bitfield.fraction, 2));
-//	ft_printf("%hhd", (char)45);
-//
-//
+//	ft_printf("%hX", (unsigned short)65535);
 //	return 0;
 //}

@@ -31,17 +31,17 @@ static void casted_print_hex_and_n(t_prmim all, va_list args)
 	else if (all.type == 'x' && all.L)
 		print_hex_num(all, va_arg(args, unsigned long long int), BASE16LR);
 	else if (all.type == 'x' && all.h)
-		print_hex_num(all, (short int) va_arg(args, int), BASE16LR);
+		print_hex_num(all, (unsigned short int) va_arg(args, int), BASE16LR);
 	else if (all.type == 'x' && all.H)
-		print_hex_num(all, (char) va_arg(args, int), BASE16LR);
+		print_hex_num(all, (unsigned char) va_arg(args, int), BASE16LR);
 	else if (all.type == 'X' && all.l)
 		print_hex_num(all, va_arg(args, unsigned long int), BASE16UP);
 	else if (all.type == 'X' && all.L)
 		print_hex_num(all, va_arg(args, unsigned long long int), BASE16UP);
 	else if (all.type == 'X' && all.h)
-		print_hex_num(all, (short int) va_arg(args, int), BASE16UP);
+		print_hex_num(all, (unsigned short int) va_arg(args, int), BASE16UP);
 	else if (all.type == 'X' && all.H)
-		print_hex_num(all, (char) va_arg(args, int), BASE16UP);
+		print_hex_num(all, (unsigned char) va_arg(args, int), BASE16UP);
 	else if (all.type == 'n' && all.l)
 		*(va_arg(args, long int *)) = all.written;
 	else if (all.type == 'n' && all.L)

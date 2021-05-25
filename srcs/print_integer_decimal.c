@@ -26,7 +26,7 @@ void	prekol_s_nulem(t_prmim all)
 		print_spaces(all.width + 1);
 }
 
-void	print_uns_i_d(t_prmim all, unsigned int n)
+void	print_uns_i_d(t_prmim all, unsigned long long int n)
 {
 	int					digits;
 	unsigned long long	nb;
@@ -51,11 +51,11 @@ void	print_uns_i_d(t_prmim all, unsigned int n)
 		print_spaces(all.width - all.precision + 1);
 }
 
-void	print_sig_i_d(t_prmim all, int n)
+void	print_sig_i_d(t_prmim all, long long int nb)
 {
-	long long	nb;
-
-	nb = (long long) n;
+//	long long	nb;
+//
+//	nb = (long long) n;
 	if (nb >= 0)
 		print_uns_i_d(all, nb);
 	else
