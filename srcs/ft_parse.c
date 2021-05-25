@@ -41,7 +41,7 @@ static void	precision_parse(const char *format, t_prmim *all, va_list args)
 				all->precision = va_arg(args, int);
 				if (all->precision < 0)
 					all->precision = -1;
-				return;
+				return ;
 			}
 			all->precision = ft_atoi(format);
 			while (ft_isdigit(*format))
@@ -56,7 +56,8 @@ static void	width_parse(const char *format, t_prmim *all, va_list args)
 	while (!ft_strchr(CONVERSIONS, *format) && *format)
 	{
 		if (*format == '.')
-			while (ft_isdigit(*(++format))) {}
+			while (ft_isdigit(*(++format)))
+				continue ;
 		else if (*format == '*')
 		{
 			all->width = va_arg(args, int);
@@ -65,7 +66,7 @@ static void	width_parse(const char *format, t_prmim *all, va_list args)
 				all->minus = 1;
 				all->width = -all->width;
 			}
-			return;
+			return ;
 		}
 		if (ft_isdigit(*format) && *format != '0')
 		{
@@ -88,7 +89,7 @@ static void	type_parse(const char *format, t_prmim *all)
 	all->type = (unsigned char)*format;
 	if (*--format == 'l')
 	{
-		all->l =  1;
+		all->l = 1;
 		if (*--format == 'l')
 		{
 			all->l = 0;

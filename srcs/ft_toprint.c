@@ -2,7 +2,7 @@
 
 void	ft_print_num(t_prmim all, va_list args)
 {
-	if (all.h ||  all.l || all.L || all.H)
+	if (all.h || all.l || all.L || all.H)
 	{
 		casted_print(all, args);
 		return ;
@@ -22,7 +22,7 @@ void	ft_print_num(t_prmim all, va_list args)
 	else if (all.type == 'X')
 		print_hex_num(all, va_arg(args, unsigned int), BASE16UP);
 	else if (all.type == 'p')
-		print_pointer(all, va_arg(args, unsigned long));
+		print_pointer(all, va_arg(args, unsigned long long));
 	else if (all.type == 'n')
 		*(va_arg(args, int *)) = all.written;
 }

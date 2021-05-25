@@ -53,9 +53,6 @@ void	print_uns_i_d(t_prmim all, unsigned long long int n)
 
 void	print_sig_i_d(t_prmim all, long long int nb)
 {
-//	long long	nb;
-//
-//	nb = (long long) n;
 	if (nb >= 0)
 		print_uns_i_d(all, nb);
 	else
@@ -78,4 +75,12 @@ void	print_sig_i_d(t_prmim all, long long int nb)
 		if (all.minus)
 			print_spaces(all.width - all.precision);
 	}
+}
+
+int	putnb_base(long long n, size_t baselen, char *base)
+{
+	if (n < (long long)baselen)
+		return (ft_putchar_count(base[n], 1));
+	return (putnb_base(n / (long long)baselen, baselen, base) + \
+	ft_putchar_count(base[(n % baselen)], 1));
 }

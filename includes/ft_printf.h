@@ -36,6 +36,7 @@ void		ft_print_num(t_prmim all, va_list args);
 
 int			ft_putchar_count(char c, char flag);
 int			putnb_base(long long n, size_t baselen, char *base);
+int			putnb_base_hex(unsigned long long n, size_t baselen, char *base);
 int			digits16_count(unsigned long long n);
 void		prekol_s_nulem(t_prmim all);
 
@@ -47,8 +48,6 @@ void		print_string(t_prmim all, char *str);
 void		print_hex_num(t_prmim all, unsigned long long n, char *base);
 void		print_pointer(t_prmim all, unsigned long n);
 void		casted_print(t_prmim all, va_list args);
-
-//void		print_n(int *args);
 
 void		print_spaces(int n);
 void		print_zeroes(int n);

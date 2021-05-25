@@ -1,17 +1,17 @@
 #include "../includes/ft_printf.h"
 
-static void casted_print_hex_and_n(t_prmim all, va_list args);
+static void	casted_print_hex_and_n(t_prmim all, va_list args);
 
-void casted_print(t_prmim all, va_list args)
+void	casted_print(t_prmim all, va_list args)
 {
 	if (all.type == 'u' && all.l == 1)
 		print_uns_i_d(all, va_arg(args, unsigned long int));
 	else if (all.type == 'u' && all.L == 1)
 		print_uns_i_d(all, va_arg(args, unsigned long long int));
 	else if (all.type == 'u' && all.h == 1)
-		print_uns_i_d(all, (unsigned short int) va_arg(args,unsigned int));
+		print_uns_i_d(all, (unsigned short int)va_arg(args, unsigned int));
 	else if (all.type == 'u' && all.H == 1)
-		print_uns_i_d(all, (unsigned char) va_arg(args,unsigned int));
+		print_uns_i_d(all, (unsigned char) va_arg(args, unsigned int));
 	else if ((all.type == 'i' || all.type == 'd') && all.l == 1)
 		print_sig_i_d(all, va_arg(args, long int));
 	else if ((all.type == 'i' || all.type == 'd') && all.L == 1)
@@ -24,7 +24,7 @@ void casted_print(t_prmim all, va_list args)
 		casted_print_hex_and_n(all, args);
 }
 
-static void casted_print_hex_and_n(t_prmim all, va_list args)
+static void	casted_print_hex_and_n(t_prmim all, va_list args)
 {
 	if (all.type == 'x' && all.l)
 		print_hex_num(all, va_arg(args, unsigned long int), BASE16LR);

@@ -39,17 +39,9 @@ void	print_hex_num(t_prmim all, unsigned long long n, char *base)
 	else if (all.space)
 		ft_putchar_count(' ', 1);
 	print_zeroes(all.precision - digits + 1);
-	putnb_base((long long)n, 16, base);
+	putnb_base_hex(n, 16, base);
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
-}
-
-int	putnb_base(long long n, size_t baselen, char *base)
-{
-	if (n < (long long)baselen)
-		return (ft_putchar_count(base[n], 1));
-	return	(putnb_base(n / (long long)baselen, baselen, base) +
-	ft_putchar_count(base[(n % baselen)], 1));
 }
 
 static int	ft_charcmp(char c1, char c2)
