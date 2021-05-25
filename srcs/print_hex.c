@@ -1,50 +1,8 @@
 #include "../includes/ft_printf.h"
 
-void	putnb_16base(unsigned long n)
-{
-	unsigned long long	nb;
+static int	ft_strcmp(const char *s1, const char *s2);
 
-	nb = (unsigned long long) n;
-	if (nb >= 16)
-	{
-		putnb_16base(nb / 16);
-		if (nb % 16 > 9)
-			ft_putchar_count(nb % 16 + 87, 1);
-		else
-			ft_putchar_count(nb % 16 + '0', 1);
-	}
-	else
-	{
-		if (nb > 9)
-			ft_putchar_count(nb + 87, 1);
-		else
-			ft_putchar_count(nb + '0', 1);
-	}
-}
-
-static void	putnb_16base_upper(unsigned long n)
-{
-	long long	nb;
-
-	nb = (long long) n;
-	if (nb >= 16)
-	{
-		putnb_16base_upper(nb / 16);
-		if (nb % 16 > 9)
-			ft_putchar_count(nb % 16 + 'A' - 10, 1);
-		else
-			ft_putchar_count(nb % 16 + '0', 1);
-	}
-	else
-	{
-		if (nb > 9)
-			ft_putchar_count(nb + 'A' - 10, 1);
-		else
-			ft_putchar_count(nb + '0', 1);
-	}
-}
-
-int	digits16_count(unsigned long n)
+int	digits16_count(unsigned long long n)
 {
 	int	counter;
 
@@ -57,7 +15,7 @@ int	digits16_count(unsigned long n)
 	return (counter);
 }
 
-void	print_hex_num(t_prmim all, unsigned long n)
+void	print_hex_num(t_prmim all, unsigned long long n, char *base)
 {
 	int	digits;
 
@@ -68,41 +26,44 @@ void	print_hex_num(t_prmim all, unsigned long n)
 		all.zero = 0;
 	if (digits > all.precision)
 		all.precision = digits;
+	if (all.hash)
+		all.width -= 2;
+	if (all.hash && ft_strcmp(base, BASE16LR) == 0)
+		ft_putstrn("0x", 2);
+	else if (all.hash && ft_strcmp(base, BASE16UP) == 0)
+		ft_putstrn("0X", 2);
 	if (!all.minus)
 		print_spaces_or_zeroes(all.width - all.precision + 1, all.zero);
 	if (all.plus)
 		ft_putchar_count('+', 1);
 	else if (all.space)
 		ft_putchar_count(' ', 1);
-	if (all.hash)
-		ft_putstrn("0x", 2);
 	print_zeroes(all.precision - digits + 1);
-	putnb_16base(n);
+	putnb_base_hex(n, 16, base);
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
 
-void	print_upper_hex_num(t_prmim all, unsigned long n)
+static int	ft_charcmp(char c1, char c2)
 {
-	int	digits;
+	if (c1 == c2)
+		return (1);
+	else
+		return (0);
+}
 
-	digits = digits16_count(n);
-	if (n == 0 && all.precision == 0)
-		return (prekol_s_nulem(all));
-	if (all.precision != -1)
-		all.zero = 0;
-	if (digits > all.precision)
-		all.precision = digits;
-	if (!all.minus)
-		print_spaces_or_zeroes(all.width - all.precision + 1, all.zero);
-	if (all.plus)
-		ft_putchar_count('+', 1);
-	else if (all.space)
-		ft_putchar_count(' ', 1);
-	if (all.hash)
-		ft_putstrn("0X", 2);
-	print_zeroes(all.precision - digits + 1);
-	putnb_16base_upper(n);
-	if (all.minus)
-		print_spaces(all.width - all.precision + 1);
+static int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	step;
+
+	step = 0;
+	while (s1[step] && s2[step])
+	{
+		if (!ft_charcmp(s1[step], s2[step]))
+			return ((unsigned char)s1[step] - (unsigned char)s2[step]);
+		if ((s1[step] == 0) || (s2[step] == 0))
+			break ;
+		step++;
+	}
+	return (0);
 }

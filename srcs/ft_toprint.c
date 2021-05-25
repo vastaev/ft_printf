@@ -2,10 +2,15 @@
 
 void	ft_print_num(t_prmim all, va_list args)
 {
+	if (all.h || all.l || all.L || all.H)
+	{
+		casted_print(all, args);
+		return ;
+	}
 	if (all.type == 'u')
-		print_unsigned_int_decimal(all, va_arg(args, unsigned int));
+		print_uns_i_d(all, va_arg(args, unsigned int));
 	else if (all.type == 'i' || all.type == 'd')
-		print_signed_int_decimal(all, va_arg(args, int));
+		print_sig_i_d(all, va_arg(args, int));
 	else if (all.type == 'c')
 		print_char(all, va_arg(args, int));
 	else if (all.type == '%')
@@ -13,13 +18,13 @@ void	ft_print_num(t_prmim all, va_list args)
 	else if (all.type == 's')
 		print_string(all, va_arg(args, char *));
 	else if (all.type == 'x')
-		print_hex_num(all, va_arg(args, unsigned int));
+		print_hex_num(all, va_arg(args, unsigned int), BASE16LR);
 	else if (all.type == 'X')
-		print_upper_hex_num(all, va_arg(args, unsigned int));
+		print_hex_num(all, va_arg(args, unsigned int), BASE16UP);
 	else if (all.type == 'p')
-		print_pointer(all, va_arg(args, unsigned long));
+		print_pointer(all, va_arg(args, unsigned long long));
 	else if (all.type == 'n')
-		*va_arg(args, int *) = all.written;
+		*(va_arg(args, int *)) = all.written;
 }
 
 int	ft_putchar_count(char c, char flag)

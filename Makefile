@@ -22,7 +22,8 @@ SRCS	=	srcs/ft_printf.c\
 				srcs/print_integer_decimal.c\
 				srcs/ft_utils.c\
 				srcs/print_pointer.c\
-				srcs/print_hex.c
+				srcs/print_hex.c\
+				srcs/bonus_sizes.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -37,6 +38,8 @@ RM		=	rm -f
 LIBC    =   ar rcs
 
 all : $(NAME)
+
+bonus : all
 
 %.o : %.c
 	$(CC) $(СFLAGS) -I $(INCDIR) -c $< -o $@

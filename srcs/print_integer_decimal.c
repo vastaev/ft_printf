@@ -1,24 +1,5 @@
 #include "../includes/ft_printf.h"
 
-void	putnb_base(long long n, int base)
-{
-	long long		nb;
-
-	nb = n;
-	if (nb < 0)
-		putnb_base(-nb, base);
-	else if (nb >= 10)
-	{
-		putnb_base(nb / base, base);
-		if (nb % base > 9)
-			ft_putchar_count(nb % base + 87, 1);
-		else
-			ft_putchar_count(nb % base + '0', 1);
-	}
-	else
-		ft_putchar_count(nb + '0', 1);
-}
-
 static int	digits_count(long long n)
 {
 	int	counter;
@@ -45,12 +26,12 @@ void	prekol_s_nulem(t_prmim all)
 		print_spaces(all.width + 1);
 }
 
-void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
+void	print_uns_i_d(t_prmim all, unsigned long long int n)
 {
-	int		digits;
-	long	nb;
+	int					digits;
+	unsigned long long	nb;
 
-	nb = (long) n;
+	nb = (unsigned long long) n;
 	digits = digits_count(nb);
 	if (nb == 0 && all.precision == 0)
 		return (prekol_s_nulem(all));
@@ -65,18 +46,15 @@ void	print_unsigned_int_decimal(t_prmim all, unsigned int n)
 	else if (all.space)
 		ft_putchar_count(' ', 1);
 	print_zeroes(all.precision - digits + 1);
-	putnb_base(nb, 10);
+	putnb_base(nb, 10, "0123456789");
 	if (all.minus)
 		print_spaces(all.width - all.precision + 1);
 }
 
-void	print_signed_int_decimal(t_prmim all, int n)
+void	print_sig_i_d(t_prmim all, long long int nb)
 {
-	long	nb;
-
-	nb = (long) n;
 	if (nb >= 0)
-		print_unsigned_int_decimal(all, nb);
+		print_uns_i_d(all, nb);
 	else
 	{
 		nb = -nb;
@@ -93,8 +71,16 @@ void	print_signed_int_decimal(t_prmim all, int n)
 		if (!all.zero)
 			ft_putchar_count('-', 1);
 		print_zeroes(all.precision - digits_count(nb) + 1);
-		putnb_base(nb, 10);
+		putnb_base(nb, 10, "0123456789");
 		if (all.minus)
 			print_spaces(all.width - all.precision);
 	}
+}
+
+int	putnb_base(long long n, size_t baselen, char *base)
+{
+	if (n < (long long)baselen)
+		return (ft_putchar_count(base[n], 1));
+	return (putnb_base(n / (long long)baselen, baselen, base) + \
+	ft_putchar_count(base[(n % baselen)], 1));
 }
