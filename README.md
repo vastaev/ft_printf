@@ -1,3 +1,2 @@
-# myprintf
-reproducting printf
-seg bonus
+# ft_printf
+Reproducing printf function
